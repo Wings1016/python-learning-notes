@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}创建新博客{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <form method="POST">
+        <label for="title">题目</label>
+        <input name="title" id="title" value="{{ request.form['title'] }}" required>
+        <label for="content">正文</label>
+        <textarea name="content" id="content" cols="30" rows="10">{{ request.form['content'] }}</textarea>
+        <input type="submit" value="保存">
+    </form>
+{% endblock %}

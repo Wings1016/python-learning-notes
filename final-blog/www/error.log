@@ -1,0 +1,45 @@
+trustasiadeMBP:www herry$ ./models.py 
+Found model: User
+Found mapping: id ==> <StringField, varchar(50):None>
+Found mapping: email ==> <StringField, varchar(50):None>
+Found mapping: passwd ==> <StringField, varchar(50):None>
+Found mapping: admin ==> <BooleanField, boolean:None>
+Found mapping: name ==> <StringField, varchar(50):None>
+Found mapping: image ==> <StringField, varchar(500):None>
+Found mapping: created_at ==> <FloatField, real:None>
+Found model: Blog
+Found mapping: id ==> <StringField, varchar(50):None>
+Found mapping: user_id ==> <StringField, varchar(50):None>
+Found mapping: user_name ==> <StringField, varchar(50):None>
+Found mapping: user_image ==> <StringField, varchar(500):None>
+Found mapping: name ==> <StringField, varchar(50):None>
+Found mapping: summary ==> <StringField, varchar(200):None>
+Found mapping: content ==> <TextField, text:None>
+Found mapping: created_at ==> <FloatField, real:None>
+Found model: Comment
+Found mapping: id ==> <StringField, varchar(50):None>
+Found mapping: blog_id ==> <StringField, varchar(50):None>
+Found mapping: user_id ==> <StringField, varchar(50):None>
+Found mapping: user_name ==> <StringField, varchar(50):None>
+Found mapping: user_image ==> <StringField, varchar(500):None>
+Found mapping: content ==> <TextField, text:None>
+Found mapping: created_at ==> <FloatField, real:None>
+Traceback (most recent call last):
+  File "/Users/herry/Documents/python/final-blog/www/orm.py", line 136, in __getattr__
+    return self[key]
+KeyError: '__fields__'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "./models.py", line 55, in <module>
+    loop.run_until_complete(test())
+  File "/usr/local/anaconda3/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "./models.py", line 52, in test
+    await u.save()
+  File "/Users/herry/Documents/python/final-blog/www/orm.py", line 204, in save
+    args = list(map(self.getValueOrDefault, self.__fields__))
+  File "/Users/herry/Documents/python/final-blog/www/orm.py", line 138, in __getattr__
+    raise AttributeError(r"'Model' object has no attribute '%s'" % key)
+AttributeError: 'Model' object has no attribute '__fields__'

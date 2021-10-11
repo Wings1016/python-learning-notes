@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}博客{% endblock %}</h1>
+    {% if g.user %}
+        <a class="action" href="{{ url_for('blog.create') }}">新建</a>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% for post in posts %}
+        <article class="post">
+            <header>
+                <div>
+                    <h1>{{ post['title'] }}</h1>
+                    <div class="about">
+                        by {{ post['username'] }} on {{ post['createtime'].strftime('%Y-%m-%d') }}
+                    </div>
+                </div>
+                {% if g.user['id']==post['author_id'] %}
+                    <a class="action" href="{{url_for('blog.update',id=post['id'])}}">编辑</a>
+                {% endif %}
+            </header>
+            <p class="content">{{ post['content'] }}</p>
+        </article>
+        <!-- loop.last是一个Jinja for循环内部可用的特殊变量，用于在每个帖子后面显示一条线来分隔帖子，最后一个帖子除外。-->
+        {% if not loop.last %}
+            <hr>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
